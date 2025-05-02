@@ -1,0 +1,125 @@
+.product-container {
+  display: flex;
+  gap: 50px;
+}
+
+.product-details-image-set {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  /* background-color: red; */
+}
+
+.product-details-image-set .main-image {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  height: 500px;
+  width: 500px;
+  object-fit: contain;
+  border-radius: 30px;
+}
+
+.product-details-image-set .other-images {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-details-image-set .other-images .thumbnail {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.product-details-image-set .other-images .selected-thumbnail {
+  border: 1px solid #007bff;
+}
+
+.product-details-image-set .product-details-center-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product-details-image-set .product-details-center-section .product-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.product-details-center-section .product-buttons .cart-btn {
+  height: 40px;
+  width: 200px;
+  background-color: #f59e0b;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.product-details-center-section .product-buttons .cart-btn:hover {
+  background-color: #fbbf24;
+  cursor: pointer;
+}
+
+.product-details-center-section .product-buttons .buy-btn {
+  /* padding: 10px 20px; */
+  height: 40px;
+  width: 200px;
+  background-color: #f59e0b;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.product-details-center-section .product-buttons .buy-btn:hover {
+  background-color: #fbbf24;
+  cursor: pointer;
+}
+
+.product-container .product-details .price-details {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.product-container .product-details .price-details .discounted-price {
+  font-weight: 700;
+}
+
+.product-container .product-details .price-details .original-price {
+  text-decoration: line-through;
+  color: #666666;
+  font-weight: 500;
+}
+
+.product-container .product-details .price-details .discount {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.product-details .product-key-features li {
+  font-weight: 600;
+  /* display: flex;
+  flex-direction: column; */
+  /* margin-top: 5px; */
+  /* gap: 5px; */
+  /* background-color: red; */
+}
+
+.product-details .product-key-features li span {
+  color: #666666;
+  font-weight: 400;
+}
+
+.price-details li {
+  background-color: red;
+  color: yellow;
+}
