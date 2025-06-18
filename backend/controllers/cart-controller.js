@@ -2,14 +2,20 @@ import Cart from "../models/cart-model.js";
 
 // Add to cart
 export const addToCart = async (req, res) => {
-  const { userId, productId, productName, quantity } = req.body;
+  const { userId, username, productId, productName, quantity } = req.body;
   try {
     let cartItem = await Cart.findOne({ userId, productId });
     if (cartItem) {
       cartItem.quantity += quantity;
       await cartItem.save();
     } else {
-      cartItem = new Cart({ userId, productId, productName, quantity });
+      cartItem = new Cart({
+        userId,
+        username,
+        productId,
+        productName,
+        quantity,
+      });
       await cartItem.save();
     }
     res.status(200).json({ message: "Added to cart", cartItem });
@@ -55,8 +61,7 @@ export const getCartProductById = async (req, res) => {
   const { userId, productId } = req.params;
 
   try {
-    const cartItem = await Cart.findOne({ userId, productId })
-    .populate(
+    const cartItem = await Cart.findOne({ userId, productId }).populate(
       "productId"
     );
 

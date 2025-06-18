@@ -18,7 +18,8 @@
 
 .admin-dashboard-nav h1 {
   font-size: 1.8rem;
-  color: #2c3e50;
+  /* color: #2c3e50; */
+  color: #007bff;
 }
 
 .admin-dashboard-buttons {
@@ -64,7 +65,6 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 100px;
-
 }
 
 .admin-dashboard-nav2 .product-search:focus {
@@ -122,12 +122,26 @@ h5 {
   gap: 10px;
 }
 
-.product-edit-btn,
+.product-btns .product-edit-btn,
 .product-delete-btn {
   padding: 8px 25px;
   border: none;
   border-radius: 5px;
   color: #ffffff;
+}
+
+.product-btns .product-show-hide-btn {
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  padding: 3px 10px;
+  /* height: 40px; */
+  /* width: 100px; */
+}
+
+.product-btns .product-show-hide-btn:hover {
+  cursor: pointer;
 }
 
 .product-edit-btn {
@@ -144,9 +158,26 @@ h5 {
 }
 
 .product-delete-btn:hover {
-  background-color: #dc3545;
+  background-color: #d42738;
   cursor: pointer;
 }
+
+.product-btns .product-show-hide-btn:hover {
+  background-color: #218838;
+}
+
+/* .show-hide-product {
+  padding: 8px 25px;
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  background-color: #dc3545;
+} */
+
+/* .product-btns .show-hide-product:hover {
+  background-color: #dc3545;
+  cursor: pointer;
+} */
 
 @media screen and (max-width: 768px) {
   .admin-dashboard-buttons {

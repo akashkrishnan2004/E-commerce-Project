@@ -28,6 +28,7 @@ export default function AdminReviews() {
         "http://localhost:3000/api/get-all-messages"
       );
       setReviews(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error fetching reviews:", error);
     } finally {

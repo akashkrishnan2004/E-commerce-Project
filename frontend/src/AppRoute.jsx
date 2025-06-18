@@ -27,7 +27,7 @@ export default function AppRoute() {
   return (
     <BrowserRouter>
       <InactivityLogout />
-      <Toaster position="bottom-right" reverseOrder={false} />
+      <Toaster position="bottom-left" reverseOrder={false} />
       <Routes>
         {/* Public Pages */}
         <Route path="/" element={<Register />} />

@@ -22,13 +22,22 @@
 
 .review-card {
   background: #fff;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-radius: 12px;
   padding: 1rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); */
+  box-shadow: 0 2px 12px #007bff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: 0.3s ease-in-out;
+}
+
+.review-card:hover {
+  /* transform: scale(1.02); */
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.879); */
+  /* box-shadow: 0 4px 12px #007bff; */
+  /* border: 1px solid #007bff; */
 }
 
 .review-header {

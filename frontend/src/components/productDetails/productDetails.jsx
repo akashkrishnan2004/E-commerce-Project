@@ -107,6 +107,8 @@ export default function ProductDetails() {
   const [selectedImage, setSelectedImage] = useState("");
   const [inCart, setInCart] = useState(false);
 
+  const [userData, setUserData] = useState({});
+
   const userId = localStorage.getItem("User Id");
 
   useEffect(() => {
@@ -136,7 +138,18 @@ export default function ProductDetails() {
 
     getProduct();
     checkInCart();
+
+    // get user details for adding username into cart
+    const getUserData = async () => {
+      const response = await axios.get(
+        `http://localhost:3000/api/get-user/${userId}`
+      );
+      setUserData(response.data.user);
+    };
+    getUserData();
   }, [id, userId]);
+
+  console.log(userData.username);
 
   const handleCartToggle = async () => {
     if (!userId) {
@@ -155,6 +168,7 @@ export default function ProductDetails() {
       } else {
         await axios.post("http://localhost:3000/api/add-to-cart", {
           userId,
+          username: userData.username,
           productId: product._id,
           productName: product.modelName,
           quantity: 1,

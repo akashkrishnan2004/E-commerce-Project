@@ -29,7 +29,8 @@ export const sendEmailOTP = async (email, otp) => {
           <p>Your OTP code is: <strong style="font-size: 18px; color: #d32f2f;">${otp}</strong></p>
           <p>This OTP will expire in <strong>10 minutes</strong>. Please do not share it with anyone.</p>
           <br>
-          <p>Thank you,<br> Team <strong> Phonix</strong></p>
+          <p>Thank you,<br> Team <strong> Phonix</run dev
+          bstrong></p>
         </div>
       `,
     };

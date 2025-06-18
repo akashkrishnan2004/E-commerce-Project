@@ -18,24 +18,31 @@ const mobileSchema = new mongoose.Schema({
   },
   ram: {
     type: String,
+    required: true,
   },
   storage: {
     type: String,
+    required: true,
   },
   battery: {
     type: String,
+    required: true,
   },
   processor: {
     type: String,
+    required: true,
   },
   camera: {
     type: String,
+    required: true,
   },
   displaySize: {
     type: String,
+    required: true,
   },
   os: {
     type: String,
+    required: true,
   },
   images: {
     type: [String],
@@ -50,6 +57,7 @@ const mobileSchema = new mongoose.Schema({
   stock: {
     type: Number,
     default: 0,
+    required: true,
   },
   discount: {
     percentage: {
@@ -63,6 +71,10 @@ const mobileSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  showOnSite: {
+      type: Boolean,
+      default: false,
+    },
 });
 
 const mobileModel = mongoose.model("mobile_products", mobileSchema);

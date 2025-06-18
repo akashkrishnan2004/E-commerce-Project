@@ -137,7 +137,7 @@ export default function ProductAdd() {
 
   return (
     <div className="add-product-container">
-      <h2>Add New Mobile</h2>
+      <h1>Add New Mobile</h1>
       <form onSubmit={handleSubmit}>
         <input
           name="modelName"
@@ -171,48 +171,56 @@ export default function ProductAdd() {
           placeholder="RAM"
           value={formData.ram}
           onChange={handleChange}
+          required
         />
         <input
           name="storage"
           placeholder="Storage"
           value={formData.storage}
           onChange={handleChange}
+          required
         />
         <input
           name="battery"
           placeholder="Battery"
           value={formData.battery}
           onChange={handleChange}
+          required
         />
         <input
           name="processor"
           placeholder="Processor"
           value={formData.processor}
           onChange={handleChange}
+          required
         />
         <input
           name="camera"
           placeholder="Camera"
           value={formData.camera}
           onChange={handleChange}
+          required
         />
         <input
           name="displaySize"
           placeholder="Display Size"
           value={formData.displaySize}
           onChange={handleChange}
+          required
         />
         <input
           name="os"
           placeholder="Operating System"
           value={formData.os}
           onChange={handleChange}
+          required
         />
         <input
           name="stock"
           placeholder="Stock"
           value={formData.stock}
           onChange={handleChange}
+          required
         />
         <input
           name="percentage"

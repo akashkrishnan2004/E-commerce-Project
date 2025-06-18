@@ -24,7 +24,11 @@ export default function Dashboard() {
         const response = await axios.get(
           "http://localhost:3000/api/get-products"
         );
-        setProducts(response.data.products);
+        const allowedProducts = response.data.products.filter(
+          (allowed) => allowed.showOnSite
+        );
+        setProducts(allowedProducts)
+        // setProducts(response.data.products);
       } catch (error) {
         console.error("Failed to load products", error);
         toast.error("Failed to load products");
@@ -67,6 +71,7 @@ export default function Dashboard() {
         <h1>Shop Now</h1>
         <input
           type="search"
+          // list="mobiles"
           placeholder="Search by model or brand"
           value={searchQuery}
           onChange={(e) => {
@@ -76,6 +81,16 @@ export default function Dashboard() {
           }}
           className="search-input"
         />
+
+        {/* <datalist id="mobiles">
+          <option value="Apple">Apple</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Oneplus">Oneplus</option>
+          <option value="Oppo">Oppo</option>
+          <option value="Realme">Realme</option>
+          <option value="Vivo">Vivo</option>
+          <option value="Nothing">Nothing</option>
+        </datalist> */}
 
         <div className="select-wrapper">
           <select
@@ -95,6 +110,10 @@ export default function Dashboard() {
             <option value="Realme">Realme</option>
             <option value="Vivo">Vivo</option>
             <option value="Nothing">Nothing</option>
+            <option value="Pixel">Pixel</option>
+            <option value="Motorola">Motorola</option>
+            <option value="Honor">Honor</option>
+            <option value="Iqoo">Iqoo</option>
           </select>
           <span className="custom-arrow">&#9662;</span>
         </div>
@@ -119,7 +138,7 @@ export default function Dashboard() {
                     </h3>
                     <h5 className="product-price">₹{product.price}</h5>
                   </div>
-                  <h5 className="discount-price">
+                  <h5 className="discount-percentage">
                     {product.discount.percentage}% off
                   </h5>
                 </div>

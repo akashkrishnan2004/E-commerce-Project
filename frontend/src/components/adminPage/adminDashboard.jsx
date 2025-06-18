@@ -101,6 +101,23 @@ export default function AdminDashboard() {
     return matchesBrand && matchesSearch;
   });
 
+  const handleToggleShow = async (id) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:3000/api/toggle-show-product/${id}`
+      );
+      toast.success(
+        response.data.showOnSite
+          ? "Product is now visible on site"
+          : "Product hidden from site"
+      );
+      fetchProducts();
+    } catch (err) {
+      toast.error("Toggle failed");
+      console.error(err);
+    }
+  };
+
   return (
     <div className="admin-dashboard">
       {/* Top Nav */}
@@ -133,7 +150,7 @@ export default function AdminDashboard() {
           onChange={(e) => setStatusFilter(e.target.value)}
           className="admin-select-box"
         >
-          <option value="">All</option>
+          <option value="">All Brands</option>
           <option value="Apple">Apple</option>
           <option value="Samsung">Samsung</option>
           <option value="Oneplus">Oneplus</option>
@@ -141,6 +158,10 @@ export default function AdminDashboard() {
           <option value="Realme">Realme</option>
           <option value="Vivo">Vivo</option>
           <option value="Nothing">Nothing</option>
+          <option value="Pixel">Pixel</option>
+          <option value="Motorola">Motorola</option>
+          <option value="Honor">Honor</option>
+          <option value="Iqoo">Iqoo</option>
         </select>
       </nav>
 
@@ -162,11 +183,21 @@ export default function AdminDashboard() {
                   <Link to={`/admin/product-edit/${product._id}`}>
                     <button className="product-edit-btn">Edit</button>
                   </Link>
+
                   <button
                     onClick={() => handleDelete(product._id)}
                     className="product-delete-btn"
                   >
                     Delete
+                  </button>
+
+                  <button
+                    onClick={() => handleToggleShow(product._id)}
+                    className="product-show-hide-btn"
+                  >
+                    {product.showOnSite
+                      ? "Hide product from site"
+                      : "Show product in site"}
                   </button>
                 </div>
               </div>

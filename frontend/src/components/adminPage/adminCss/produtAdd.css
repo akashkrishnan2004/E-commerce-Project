@@ -7,9 +7,10 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-.add-product-container h2 {
+.add-product-container h1 {
   text-align: center;
-  color: #0f172a;
+  /* color: #0f172a; */
+  color: #007bff;
   margin-bottom: 2rem;
 }
 

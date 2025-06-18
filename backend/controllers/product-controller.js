@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 import mobileModel from "../models/product-model.js";
 
 // Create product
@@ -72,7 +74,6 @@ export const createProduct = async (req, res) => {
     res.status(500).json({ message: "Something went wrong", error });
   }
 };
-
 
 // get products
 export const getProducts = async (req, res) => {
@@ -150,5 +151,35 @@ export const updateProductById = async (req, res) => {
   } catch (error) {
     console.error("Update error:", error);
     res.status(500).json({ message: "Update failed", error: error.message });
+  }
+};
+
+// Allow to show product on site
+export const toggleProductShowOnSite = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid product ID" });
+    }
+
+    const product = await mobileModel.findById(id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    product.showOnSite = !product.showOnSite;
+    await product.save();
+
+    res.status(200).json({
+      message: "Visibility toggled",
+      showOnSite: product.showOnSite,
+    });
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ message: "Failed to toggle visibility", error: err });
   }
 };

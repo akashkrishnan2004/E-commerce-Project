@@ -101,7 +101,7 @@
   padding: 15px;
   border-radius: 10px;
   height: 350px;
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
   text-align: left;
   position: relative;
   text-align: center;
@@ -125,9 +125,10 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  /* position: relative; */
 }
 
-.product-card .product-price-details .discount-price {
+.product-card .product-price-details .discount-percentage {
   /* background-color: #28a745;
   color: white;
   padding: 8px 10px;
@@ -135,12 +136,18 @@
   align-items: center;
   justify-content: center;
   border-radius: 100px; */
+  /* transform: rotate(-45deg); */
+
+  /* Currently using */
   background-color: #28a745;
   color: #fff;
   font-size: 0.9rem;
   padding: 6px 10px;
   border-radius: 100px;
-  font-weight: bold;
+}
+
+.product-card .product-price-details .discount-percentage:hover {
+  background-color: #218838;
 }
 
 .product-card .product-price-details .product-price-details-right {

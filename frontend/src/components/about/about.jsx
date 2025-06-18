@@ -27,6 +27,11 @@ export default function About  () {
         <p>
           Thank you for choosing us - we're excited to help you find your perfect mobile device!
         </p>
+        {/* <p>
+          With love
+          <br />
+          Team <strong>Phonix</strong>
+        </p> */}
       </div>
     </div>
   );

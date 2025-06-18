@@ -66,6 +66,7 @@ export const toggleShowOnSite = async (req, res) => {
       .status(200)
       .json({ message: "Visibility toggled", showOnSite: message.showOnSite });
   } catch (err) {
+    console.error(err);
     res
       .status(500)
       .json({ message: "Failed to toggle visibility", error: err });
