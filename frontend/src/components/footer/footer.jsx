@@ -8,7 +8,7 @@ export default function Footer() {
           {/* <h3>Mobile Store</h3> */}
           <h3>Phonix</h3>
           <p>
-            Your go-to destination for the latest smartphones and accessories.
+            Your go-to destination for the latest smartphones.
           </p>
         </div>
 

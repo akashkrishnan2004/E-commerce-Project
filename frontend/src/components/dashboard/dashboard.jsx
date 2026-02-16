@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import axios from "axios";
+import axios, { all } from "axios";
+
+const API_URL =  import.meta.env.VITE_API_URL
 
 import "./dashboard.css";
 
@@ -15,6 +17,8 @@ export default function Dashboard() {
   const [currentPage, setCurrentPage] = useState(pageParam);
 
   const productsPerPage = 4;
+  
+  // console.log(API_URL);
 
   const navigate = useNavigate();
 
@@ -22,12 +26,14 @@ export default function Dashboard() {
     const getProducts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/get-products"
+          `${API_URL}/api/get-products`
         );
         const allowedProducts = response.data.products.filter(
           (allowed) => allowed.showOnSite
         );
-        setProducts(allowedProducts)
+        // setProducts(allowedProducts);
+        // setProducts(allowedProducts.reverse());
+        setProducts(allowedProducts.sort(() => Math.random() - 0.5));
         // setProducts(response.data.products);
       } catch (error) {
         console.error("Failed to load products", error);
@@ -110,7 +116,7 @@ export default function Dashboard() {
             <option value="Realme">Realme</option>
             <option value="Vivo">Vivo</option>
             <option value="Nothing">Nothing</option>
-            <option value="Pixel">Pixel</option>
+            <option value="Google Pixel">Pixel</option>
             <option value="Motorola">Motorola</option>
             <option value="Honor">Honor</option>
             <option value="Iqoo">Iqoo</option>
@@ -127,20 +133,25 @@ export default function Dashboard() {
           currentProducts.map((product) => (
             <Link to={`/product-details/${product._id}`} key={product._id}>
               <div className="product-card">
+                {/* Show label if product.showLabel is true */}
+                {product.showLabel && (
+                  <div className="new-launch-label">New Arrival</div>
+                )}
+
                 <img src={product.images[0]} alt={product.modelName} />
                 <h3>{product.modelName}</h3>
                 <div className="product-price-details">
                   <div className="product-price-details-right">
-                    <h3>
+                    <h5 className="discount-percentage">
+                      {product.discount.percentage}% off
+                    </h5>
+                    <h3 className="discount-price">
                       ₹
                       {product.price -
                         (product.price * product.discount.percentage) / 100}
                     </h3>
                     <h5 className="product-price">₹{product.price}</h5>
                   </div>
-                  <h5 className="discount-percentage">
-                    {product.discount.percentage}% off
-                  </h5>
                 </div>
               </div>
             </Link>

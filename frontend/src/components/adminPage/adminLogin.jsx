@@ -1,8 +1,9 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+
+const API_URL =  import.meta.env.VITE_API_URL
 
 import "./adminCss/adminLogin.css";
 
@@ -20,7 +21,7 @@ export default function AdminLogin() {
     }
 
     try {
-      const res = await axios.post("http://localhost:3000/admin/login", {
+      const res = await axios.post(`${API_URL}/admin/login`, {
         username,
         password,
       });
@@ -38,7 +39,7 @@ export default function AdminLogin() {
   };
   return (
     <div className="admin-login-container">
-      <h2>Admin Login</h2>
+      <h2 className="admin-login-container-h2">Admin Login</h2>
       <form onSubmit={handleLogin} className="admin-login-form">
         <input
           type="text"

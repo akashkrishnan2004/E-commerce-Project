@@ -2,7 +2,7 @@ import Cart from "../models/cart-model.js";
 
 // Add to cart
 export const addToCart = async (req, res) => {
-  const { userId, username, productId, productName, quantity } = req.body;
+  const { userId, userName, productId, productName, quantity } = req.body;
   try {
     let cartItem = await Cart.findOne({ userId, productId });
     if (cartItem) {
@@ -11,7 +11,7 @@ export const addToCart = async (req, res) => {
     } else {
       cartItem = new Cart({
         userId,
-        username,
+        userName,
         productId,
         productName,
         quantity,

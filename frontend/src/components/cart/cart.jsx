@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL
+
 import "./cart.css";
 
 export default function Cart() {
@@ -11,9 +13,9 @@ export default function Cart() {
     const getCartedProducts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/user-cart/${user_id}`
+          `${API_URL}/api/user-cart/${user_id}`
         );
-        setCartedProducts(response.data.cartedItems);
+        setCartedProducts(response.data.cartedItems.reverse());
         // console.log(cartedProducts);
       } catch (error) {
         console.log(error);
@@ -39,6 +41,9 @@ export default function Cart() {
                   {products.productId.modelName}
                 </h3>
                 <div className="product-price-details">
+                  <h5 className="discount-offer">
+                    {products.productId.discount.percentage} % off
+                  </h5>
                   <h3 className="discount-price">
                     {" "}
                     ₹
@@ -48,10 +53,12 @@ export default function Cart() {
                         100}
                   </h3>
                   <h5 className="product-price">₹{products.productId.price}</h5>
-                  <h5 className="discount-offer">
-                    {products.productId.discount.percentage} % off
-                  </h5>
                 </div>
+                {/* <h4>
+                  <button>-</button>
+                  {products.quantity}
+                  <button>+</button>
+                </h4> */}
               </div>
             </Link>
           ))}

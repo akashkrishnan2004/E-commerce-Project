@@ -25,6 +25,7 @@ router.get("/get-product/:id", product.getProductById); // get product by id
 router.put("/update-product/:id", product.updateProductById); // update product
 router.delete("/delete-product/:id", product.deleteProductById); // delete product
 router.patch("/toggle-show-product/:id", product.toggleProductShowOnSite); // show or hide product
+router.patch("/toggle-add-label/:id", product.toggleAddlabel) // Add a label or hide
 
 // Message Route
 router.post("/contact", message.createMessage); // create message

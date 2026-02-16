@@ -86,7 +86,7 @@
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 1rem;
 }
 
@@ -130,7 +130,8 @@ h5 {
   color: #ffffff;
 }
 
-.product-btns .product-show-hide-btn {
+.product-btns .product-show-hide-btn,
+.add-label-button {
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -163,6 +164,11 @@ h5 {
 }
 
 .product-btns .product-show-hide-btn:hover {
+  background-color: #218838;
+}
+
+.product-btns .add-label-button:hover {
+  cursor: pointer;
   background-color: #218838;
 }
 

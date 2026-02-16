@@ -1,6 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
+import 'react-loading-skeleton/dist/skeleton.css';
+
+import '@fortawesome/fontawesome-free/css/all.min.css'; // For loading font awesome icons
+
 import AdminLogin from "./components/adminPage/adminLogin";
 import AdminDashboard from "./components/adminPage/adminDashboard";
 import ProductAdd from "./components/adminPage/produtAdd";

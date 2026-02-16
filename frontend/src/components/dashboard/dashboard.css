@@ -96,6 +96,7 @@
 }
 
 .home-container .product-card {
+  position: relative;
   border: none;
   background-color: #ffffff;
   padding: 15px;
@@ -103,7 +104,6 @@
   height: 350px;
   transition: 0.5s ease-in-out;
   text-align: left;
-  position: relative;
   text-align: center;
   display: flex;
   align-items: center;
@@ -120,6 +120,8 @@
   width: 200px;
   object-fit: contain;
 }
+
+/* h3 */
 
 .product-card .product-price-details {
   display: flex;
@@ -158,6 +160,14 @@
 
 .product-card .product-price {
   text-decoration: line-through;
+  color: #777;
+  font-size: 1rem;
+}
+
+.product-price-details .product-price-details-right .discount-price {
+  font-size: 1.2rem;
+  color: #000000;
+  font-weight: 700;
 }
 
 .home-container .pagination {
@@ -184,4 +194,50 @@
   background-color: #007bff;
   color: white;
   font-weight: bold;
+}
+
+/* New Arrival */
+.new-launch-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  /* background: linear-gradient(45deg, #ff4d4d, #ff9900); */
+  background: linear-gradient(45deg, #007bff, #00c6ff);
+  /* background: linear-gradient(45deg, #0055ff, #00bfff); */
+  color: white;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.new-launch-label {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .home-container .home-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
 }

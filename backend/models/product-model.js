@@ -72,9 +72,13 @@ const mobileSchema = new mongoose.Schema({
     default: Date.now,
   },
   showOnSite: {
-      type: Boolean,
-      default: false,
-    },
+    type: Boolean,
+    default: false,
+  },
+  showLabel: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const mobileModel = mongoose.model("mobile_products", mobileSchema);

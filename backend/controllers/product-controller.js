@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 import mobileModel from "../models/product-model.js";
 
-// Create product
+// Add color section
 export const createProduct = async (req, res) => {
   try {
     const {
@@ -22,7 +22,7 @@ export const createProduct = async (req, res) => {
       discount,
     } = req.body;
 
-    // Validate images
+    // Validate images (exactly 5)
     if (!images || !Array.isArray(images) || images.length !== 5) {
       return res
         .status(400)
@@ -33,7 +33,7 @@ export const createProduct = async (req, res) => {
     const normalizedModelName = modelName.trim().toLowerCase();
     const normalizedBrand = brand.trim().toLowerCase();
 
-    // Check for duplicates (case-insensitive)
+    //  Check for duplicate (case-insensitive)
     const existingProduct = await mobileModel.findOne({
       modelName: { $regex: `^${normalizedModelName}$`, $options: "i" },
       brand: { $regex: `^${normalizedBrand}$`, $options: "i" },
@@ -45,7 +45,7 @@ export const createProduct = async (req, res) => {
       });
     }
 
-    // Create product
+    //  Create new product
     const newMobile = new mobileModel({
       modelName: modelName.trim(),
       brand: brand.trim(),
@@ -130,12 +130,59 @@ export const deleteProductById = async (req, res) => {
   }
 };
 
-// update product
+// Update product
 export const updateProductById = async (req, res) => {
   try {
     const { id } = req.params;
+    const {
+      modelName,
+      brand,
+      description,
+      price,
+      ram,
+      storage,
+      battery,
+      processor,
+      camera,
+      displaySize,
+      os,
+      images,
+      stock,
+      discount,
+      showOnSite,
+      showLabel,
+    } = req.body;
 
-    const updatedProduct = await mobileModel.findByIdAndUpdate(id, req.body, {
+    // Validate images (if provided)
+    if (images && (!Array.isArray(images) || images.length !== 5)) {
+      return res
+        .status(400)
+        .json({ message: "Exactly 5 images must be provided." });
+    }
+
+    //  Build update object dynamically
+    const updateData = {
+      ...(modelName && { modelName: modelName.trim() }),
+      ...(brand && { brand: brand.trim() }),
+      ...(description && { description }),
+      ...(price && { price: Number(price) }),
+      ...(ram && { ram }),
+      ...(storage && { storage }),
+      ...(battery && { battery }),
+      ...(processor && { processor }),
+      ...(camera && { camera }),
+      ...(displaySize && { displaySize }),
+      ...(os && { os }),
+      ...(images && { images }),
+      ...(stock && { stock: Number(stock) }),
+      ...(discount && {
+        discount: { percentage: Number(discount.percentage) || 0 },
+      }),
+      ...(showOnSite !== undefined && { showOnSite }),
+      ...(showLabel !== undefined && { showLabel }),
+    };
+
+    const updatedProduct = await mobileModel.findByIdAndUpdate(id, updateData, {
       new: true,
       runValidators: true,
     });
@@ -181,5 +228,32 @@ export const toggleProductShowOnSite = async (req, res) => {
     res
       .status(500)
       .json({ message: "Failed to toggle visibility", error: err });
+  }
+};
+
+// Allow to add a label "New Launch"
+export const toggleAddlabel = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid product ID" });
+    }
+
+    const product = await mobileModel.findById(id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    product.showLabel = !product.showLabel;
+    await product.save();
+
+    res
+      .status(200)
+      .json({ message: "Label Added", showLabel: product.showLabel });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to toggle launch", error: error });
   }
 };
