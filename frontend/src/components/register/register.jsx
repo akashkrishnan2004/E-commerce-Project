@@ -35,7 +35,7 @@ export default function Register() {
     setError("");
   };
 
-  // ✅ Image upload (Base64)
+  // Image upload (Base64)
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
 
@@ -55,7 +55,7 @@ export default function Register() {
     e.preventDefault();
     setError("");
 
-    // ✅ Username validation
+    // Username validation
     if (!usernameRegex.test(formData.username)) {
       setError(
         "Username can only contain lowercase letters, numbers, and underscores."
@@ -63,7 +63,7 @@ export default function Register() {
       return;
     }
 
-    // ✅ Password match validation
+    // Password match validation
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match.");
       return;
